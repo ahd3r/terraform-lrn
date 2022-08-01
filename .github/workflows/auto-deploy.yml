@@ -10,12 +10,19 @@ jobs:
     name: Prepare AWS
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout to code
+        uses: actions/checkout@v2
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
       - name: Run terraform
         run: cd terraform && terraform apply -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
       - name: save terraform state
         run: echo save terraform cloud state
+      - uses: EndBug/add-and-commit@v9
+        with:
+          author_name: terraform
+          author_email: ander11110@gmail.com
+          message: '[no ci] update terraform state'
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
