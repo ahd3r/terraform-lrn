@@ -29,3 +29,7 @@ resource "aws_subnet" "tf_subnet" {
   enable_resource_name_dns_a_record_on_launch = true
   private_dns_hostname_type_on_launch = "ip-name"
 }
+
+resource "aws_internet_gateway" "tf_ig" {
+  vpc_id = aws_vpc.tf_vpc.id
+}
