@@ -35,8 +35,8 @@ resource "aws_internet_gateway" "tf_ig" {
   vpc_id = aws_vpc.tf_vpc.id
 }
 
-resource "aws_route_table" "tf_rt" {
-  vpc_id = aws_vpc.tf_vpc.id
+resource "aws_default_route_table" "tf_rt" {
+  default_route_table_id = aws_vpc.tf_vpc.default_route_table_id
 
   route {
     cidr_block = "0.0.0.0/0"
