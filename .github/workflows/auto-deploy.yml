@@ -24,6 +24,7 @@ jobs:
           author_name: terraform
           author_email: ander11110@gmail.com
           message: '[no ci] update terraform state'
+          pull: 'origin main'
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
