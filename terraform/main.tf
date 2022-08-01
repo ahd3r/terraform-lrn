@@ -30,6 +30,21 @@ resource "aws_subnet" "tf_subnet" {
   private_dns_hostname_type_on_launch = "ip-name"
 }
 
+# already attached
 resource "aws_internet_gateway" "tf_ig" {
   vpc_id = aws_vpc.tf_vpc.id
+}
+
+resource "aws_route_table" "tf_rt" {
+  vpc_id = aws_vpc.tf_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.tf_ig.id
+  }
+
+  route {
+    cidr_block = "10.1.1.0/24"
+    gateway_id = "local"
+  }
 }
