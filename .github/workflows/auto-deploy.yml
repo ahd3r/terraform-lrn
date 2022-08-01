@@ -1,0 +1,32 @@
+name: Deploy to Amazon EC2
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  provision-cloud:
+    name: Prepare AWS
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+      - name: Run terraform
+        run: cd terraform && terraform apply -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+      - name: save terraform state
+        run: echo save terraform cloud state
+  deploy-server:
+    name: Deploy server application
+    runs-on: ubuntu-latest
+    needs: provision-cloud
+    steps:
+      - name: connect to server
+        run: echo ssh into server and push my server app code
+  deploy-serverless:
+    name: Deploy serverless application
+    runs-on: ubuntu-latest
+    needs: provision-cloud
+    steps:
+      - name: deploy lambda
+        run: echo deploy my function

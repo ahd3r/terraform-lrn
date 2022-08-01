@@ -1,0 +1,26 @@
+{
+  "name": "terraform-lrn",
+  "version": "1.0.0",
+  "description": "Test terraform to deploy server app and serverless app",
+  "main": "src",
+  "scripts": {
+    "start-server": "node src/index.js",
+    "serverless-fibonacci": "node -e \"(async () => { console.log(await require('./src/handler').handler({sequence: 15})) })();\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ahd3r/terraform-lrn.git"
+  },
+  "author": "Ander",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ahd3r/terraform-lrn/issues"
+  },
+  "homepage": "https://github.com/ahd3r/terraform-lrn#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "helmet": "^5.1.1",
+    "joi": "^17.6.0"
+  }
+}
