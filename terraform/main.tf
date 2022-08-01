@@ -42,9 +42,4 @@ resource "aws_route_table" "tf_rt" {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.tf_ig.id
   }
-
-  route {
-    cidr_block = "10.1.1.0/24"
-    gateway_id = "local"
-  }
 }
