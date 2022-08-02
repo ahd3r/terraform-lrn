@@ -17,14 +17,15 @@ jobs:
       - run: cd terraform && terraform init
       - name: Run terraform
         run: cd terraform && terraform apply -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
-      - name: save terraform state
-        run: echo save terraform cloud state
-      - uses: EndBug/add-and-commit@v9
+      - name: Save terraform state
+        uses: EndBug/add-and-commit@v9
         with:
           author_name: terraform
           author_email: ander11110@gmail.com
           message: '[no ci] update terraform state'
           pull: 'origin main'
+      - name: Check terraform state
+        run: terraform state
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
