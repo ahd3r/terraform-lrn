@@ -25,7 +25,7 @@ jobs:
           message: '[no ci] update terraform state'
           pull: 'origin main'
       - name: Check terraform state
-        run: terraform state list
+        run: cd terraform && terraform state list
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
