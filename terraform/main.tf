@@ -92,7 +92,7 @@ resource "aws_instance" "tf_test_ec2" {
   disable_api_termination = true
   vpc_security_group_ids = [aws_security_group.tf_sg.id]
   key_name = "tf_key_pair"
-  
+  subnet_id = aws_subnet.tf_subnet.id
 
   # user_data = <<-EOF
   # #! /bin/bash
