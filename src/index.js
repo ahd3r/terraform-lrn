@@ -9,7 +9,7 @@ app.use(helmet());
 app.use(express.json());
 
 app.get('/', (req,res) => {
-  res.status(200).send({message: 'Runnign!'});
+  res.status(200).send({message: 'Runnign!!!'});
 });
 
 app.get('/error', (req,res) => {
