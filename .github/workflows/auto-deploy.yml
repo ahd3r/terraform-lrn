@@ -12,8 +12,9 @@ jobs:
     steps:
       - name: Checkout to code
         uses: actions/checkout@v2
-      - name: Setup Terraform
+      - name: Install Terraform
         uses: hashicorp/setup-terraform@v2
+      - name: Setup Terraform
         run: cd terraform && terraform init
       - name: Run terraform
         run: cd terraform && terraform apply -auto-approve -var="access_key=${{ secrets.AWS_ACCESS_KEY_ID }}" -var="secret_key=${{ secrets.AWS_SECRET_ACCESS_KEY }}"
