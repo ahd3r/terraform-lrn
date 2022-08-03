@@ -27,7 +27,6 @@ jobs:
       - name: Check terraform state
         run: cd terraform && terraform state list
       - run: cd terraform && terraform state show aws_instance.tf_test_ec2
-      - run: cd terraform && terraform state show *
       - run: cd terraform && terraform state show .
   deploy-server:
     name: Deploy server application
