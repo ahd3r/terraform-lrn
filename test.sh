@@ -1,12 +1,10 @@
-#!/bin/bash
+# #!/bin/bash
 cd terraform
 
 resources=$(terraform state list)
-IFS='\n'
+IFS=$'\n' read -r -a array <<< "$resources"
 
-read -ra ADDR <<<"$resources"
-
-for i in "${ADDR[@]}";
+for i in "${array[@]}";
 do
   echo "bla bla $i"
 done
