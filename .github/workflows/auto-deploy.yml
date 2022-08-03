@@ -25,9 +25,7 @@ jobs:
           message: '[no ci] update terraform state'
           pull: 'origin main'
       - name: Check terraform state
-        run: cd terraform && terraform state list
-      - run: cd terraform && terraform state show aws_instance.tf_test_ec2
-      - run: cd terraform && terraform state show .
+        run: sh ./test.sh
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
