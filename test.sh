@@ -2,7 +2,11 @@
 cd terraform
 
 resources=$(terraform state list)
-IFS=$'\n' read -r -a array <<< "$resources"
+echo $(terraform state list)
+echo 1 $resources
+echo 2 "$resources"
+echo 3 "${resources}"
+IFS=$'\n' read -r -a array <<< "${resources}"
 
 for i in "${array[@]}";
 do
