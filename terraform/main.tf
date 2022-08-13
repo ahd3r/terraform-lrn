@@ -94,23 +94,18 @@ resource "aws_instance" "tf_test_ec2" {
   key_name = "tf_key_pair"
   subnet_id = aws_subnet.tf_subnet.id
 
-  # user_data = <<-EOF
-  # #! /bin/bash
-  # mkdir ~/app
-  # sudo yum update -y
-  # sudo yum install git -y
-  # git config --global credential.helper store
-  # sudo yum update -y
-  # sudo amazon-linux-extras install docker
-  # sudo service docker start
-  # sudo usermod -a -G docker ec2-user
-  # sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-  # sudo chmod +x /usr/local/bin/docker-compose
-  # sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-  # sudo nano /etc/ssh/sshd_config
-  #     PasswordAuthentication yes
-  # sudo passwd ec2-user
-  #     grow87654321
-  # sudo systemctl restart sshd.service
-  # EOF
+  user_data = <<-EOF
+  #! /bin/bash
+  mkdir ~/app
+  sudo yum update -y
+  sudo yum install git -y
+  git config --global credential.helper store
+  sudo yum update -y
+  sudo amazon-linux-extras install docker
+  sudo service docker start
+  sudo usermod -a -G docker ec2-user
+  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+  EOF
 }
