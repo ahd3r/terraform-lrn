@@ -25,8 +25,12 @@ jobs:
           author_email: ander11110@gmail.com
           message: '[no ci] update terraform state'
           pull: 'origin main'
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
       - name: Check terraform state
-        run: sh ./test.sh
+        run: cd terraform && node ./state.js
   deploy-server:
     name: Deploy server application
     runs-on: ubuntu-latest
