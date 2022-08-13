@@ -8,7 +8,10 @@ exec('terraform state list', (error, stdout, stderr) => {
     .filter(Boolean)
     .filter((resource) => !resource.startsWith('::'))
     .slice(1);
-  console.log(resources);
-});
 
-// # terraform state show aws_instance.tf_test_ec2
+  resources.forEach(resource => {
+    exec(`terraform state show ${resource}`, (error, stdout, stderr) => {
+      console.log(stdout);
+    });
+  })
+});
