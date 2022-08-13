@@ -1,7 +1,13 @@
 const { exec } = require('child_process');
 
 exec('terraform state list', (error, stdout, stderr) => {
-  console.log(stdout.trim().split('\n').map((resource) => resource.trim()));
+  const resources = stdout
+    .trim()
+    .split('\n')
+    .map((resource) => resource.trim())
+    .filter(Boolean)
+    .filter((resource) => !resource.startsWith('::'));
+  console.log(resources);
 });
 
 // # terraform state show aws_instance.tf_test_ec2
