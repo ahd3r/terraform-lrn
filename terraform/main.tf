@@ -86,26 +86,26 @@ resource "aws_key_pair" "tf_key_pair" {
   public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC8y4NucoBq04rwNkIUu4krEJ4zgRDpjNBueEh2S6coTcYS3++ZnCOJic+STQEXutezD6I82L6mP4FozUNA1l0do6m+yEsTHI8ssvy5wgT+XmP3m36tr0zA9l+albEg+aEZVpmyUl6gN/D6QQavO1BscYk3YqnVahgGt35UsOkTrzH9M9uhI5eokwLMVi3gYlUc2oknPKYkgW/92WljKTmZbGCtUUPyf7OdqW4x8dS6c4qp2oiT2Tg7wreDKPHx4myLnqb6INNlUGzszS2PeOsq9KukY443oUmVAsLZjpLX3GOOMljkwa9KxSubZhkkU/8QghmAtB8mMVEeqdSIWklLo9cj/TdqIvposeVGU1uL8+z3wUGuK0wDk84HERpH2z/Lqaber48l3vnFBP2YRaLIQh98A3f3KPfyGv9YEne6dBBTX9+I3gsj0KGU62o8OMxh0UsrcRL85eA5R0CGqbqKu+VrxpsU9Re7vNxxK4GBrNKyHkvcYN0+earEGhb0+8k= ander@ander-Inspiron-5584"
 }
 
-resource "aws_instance" "tf_test_ec2" {
-  ami = "ami-0cff7528ff583bf9a"
-  instance_type = "t2.micro"
-  disable_api_termination = true
-  vpc_security_group_ids = [aws_security_group.tf_sg.id]
-  key_name = "tf_key_pair"
-  subnet_id = aws_subnet.tf_subnet.id
+# resource "aws_instance" "tf_test_ec2" {
+#   ami = "ami-0cff7528ff583bf9a"
+#   instance_type = "t2.micro"
+#   disable_api_termination = true
+#   vpc_security_group_ids = [aws_security_group.tf_sg.id]
+#   key_name = "tf_key_pair"
+#   subnet_id = aws_subnet.tf_subnet.id
 
-  user_data = <<-EOF
-  #! /bin/bash
-  mkdir ~/app
-  sudo yum update -y
-  sudo yum install git -y
-  git config --global credential.helper store
-  sudo yum update -y
-  sudo amazon-linux-extras install docker
-  sudo service docker start
-  sudo usermod -a -G docker ec2-user
-  sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
-  sudo chmod +x /usr/local/bin/docker-compose
-  sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-  EOF
-}
+#   user_data = <<-EOF
+#   #! /bin/bash
+#   mkdir ~/app
+#   sudo yum update -y
+#   sudo yum install git -y
+#   git config --global credential.helper store
+#   sudo yum update -y
+#   sudo amazon-linux-extras install docker
+#   sudo service docker start
+#   sudo usermod -a -G docker ec2-user
+#   sudo curl -L https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+#   sudo chmod +x /usr/local/bin/docker-compose
+#   sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+#   EOF
+# }
