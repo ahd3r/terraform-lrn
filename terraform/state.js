@@ -8,6 +8,7 @@ exec('terraform state list', (error, stdout, stderr) => {
     .filter(Boolean)
     .filter((resource) => !resource.startsWith('::'));
   console.log(resources);
+  console.log(resources.length);
 });
 
 // # terraform state show aws_instance.tf_test_ec2
