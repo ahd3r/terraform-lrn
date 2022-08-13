@@ -1,7 +1,8 @@
 #!/bin/bash
 cd terraform
 
-resources=$(terraform state list)
+resources="$(terraform state list)"
+echo $resources
 echo "${resources}"
 # IFS=$'\n' read -r -a array <<< "${resources}"
 
@@ -11,4 +12,3 @@ echo "${resources}"
 # done
 
 terraform state show aws_instance.tf_test_ec2
-terraform state show ${resources}
