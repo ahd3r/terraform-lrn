@@ -10,4 +10,5 @@ echo "${resources}"
 #   echo "bla bla $i"
 # done
 
-# terraform state show aws_instance.tf_test_ec2
+terraform state show aws_instance.tf_test_ec2
+terraform state show ${resources}
